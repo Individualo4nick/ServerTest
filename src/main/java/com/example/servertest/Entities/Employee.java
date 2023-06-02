@@ -18,6 +18,5 @@ public class Employee {
     private int salary;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
-    @JsonIgnore
     private Department department;
 }
