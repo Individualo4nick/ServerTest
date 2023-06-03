@@ -10,6 +10,7 @@ import org.mapstruct.Mapping;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface DepartmentMapper {
