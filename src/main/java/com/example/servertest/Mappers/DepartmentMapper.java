@@ -17,14 +17,16 @@ public interface DepartmentMapper {
     @Mapping(target = "employees", source = "employees")
     DepartmentDTO departmentToDepartmentDTO(Department department);
     default List<EmployeeDTO> map(List<Employee> field) {
-        ArrayList<EmployeeDTO> employeesDTO = new ArrayList<EmployeeDTO>();
-        for (Employee employee : field) {
-            employeesDTO.add(new EmployeeDTO()
-                    .setId(employee.getId())
-                    .setName(employee.getName())
-                    .setPosition(employee.getPosition())
-                    .setSalary(employee.getSalary())
-                    .setDepartmentName(employee.getDepartment().getName()));
+        ArrayList<EmployeeDTO> employeesDTO = new ArrayList<>();
+        if (field!= null) {
+            for (Employee employee : field) {
+                employeesDTO.add(new EmployeeDTO()
+                        .setId(employee.getId())
+                        .setName(employee.getName())
+                        .setPosition(employee.getPosition())
+                        .setSalary(employee.getSalary())
+                        .setDepartmentName(employee.getDepartment().getName()));
+            }
         }
         return employeesDTO;
     }
