@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  servertest:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres_db
+    environment:
+      - spring.datasource.url=jdbc:postgresql://postgres_db:5432/TestServer
+
+  postgres_db:
+    image: postgres
+    restart: always
+    networks:
+      - backend
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=wtf2281337
+      - POSTGRES_DB=TestServer
+    ports:
+      - "5432:5432"
+
+
+networks:
+  backend:
+    driver: bridge
